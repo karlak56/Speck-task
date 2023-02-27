@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Technologies</title>
+	<style>
+		.add-tech-btn {
+			padding: 10px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		.remove-all-btn {
+			padding: 10px;
+			background-color: #f44336;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<!-- dodajemo input polje za unos nove tehnologije -->
+	<input type="text" id="tech-input" placeholder="Dodaj novu tehnologiju">
+
+	<!-- dodajemo gumb za dodavanje nove tehnologije -->
+	<button id="add-tech-btn" class="add-tech-btn">Add</button>
+
+	<!-- prikazujemo popis tehnologija u gridu -->
+	<div id="tech-grid"></div>
+
+	<!-- dodajemo gumb za brisanje svih unesenih tehnologija -->
+	<button id="remove-all-btn" class="remove-all-btn">Remove all items</button>
+
+	<script>
+		const techInput = document.getElementById('tech-input');
+		const addTechBtn = document.getElementById('add-tech-btn');
+		const techGrid = document.getElementById('tech-grid');
+		const removeAllBtn = document.getElementById('remove-all-btn');
+
+		function addTechnology() {
+			const techName = techInput.value.trim();
+
+	
+			if (techName.length === 0) {
+				alert('Molimo unesite ime tehnologije.');
+				return;
+			}
+
+			const techItem = document.createElement('div');
+			techItem.textContent = techName;
+			techItem.classList.add('tech-item');
+			techGrid.appendChild(techItem);
+
+
+			techInput.value = '';
+			techInput.focus();
+		}
+
+		addTechBtn.addEventListener('click', addTechnology);
+
+		function removeAllTechnologies() {
+			while (techGrid.firstChild) {
+				techGrid.removeChild(techGrid.firstChild);
+			}
+		}
+
+		removeAllBtn.addEventListener('click', removeAllTechnologies);
+	</script>
+</body>
+</html>
